@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Server Redirect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    // Base server URL
+    const base = "http://10.40.136.250:8000";
+
+    // Get everything after the domain (path + query)
+    const pathAndQuery = window.location.pathname + window.location.search + window.location.hash;
+
+    // Build final URL
+    const target = base + pathAndQuery;
+
+    // Redirect
+    window.location.replace(target);
+  </script>
+</head>
+
+<body>
+  <p>Redirecting to your server...</p>
+</body>
+</html>
