@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Server Redirect</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>Redirect</title>
   <script>
-    // Base server URL
     const base = "http://10.40.136.250:8000";
 
-    // Get everything after the domain (path + query)
-    const pathAndQuery = window.location.pathname + window.location.search + window.location.hash;
+    const repo = "/mroapp";
 
-    // Build final URL
-    const target = base + pathAndQuery;
+    let path = window.location.pathname;
 
-    // Redirect
-    window.location.replace(target);
+    // Remove repo prefix
+    if (path.startsWith(repo)) {
+      path = path.slice(repo.length);
+    }
+
+    // Ensure path starts correctly
+    if (path === "" || path === "/") {
+      path = "";
+    }
+
+    const finalUrl = base + path + window.location.search + window.location.hash;
+
+    window.location.replace(finalUrl);
   </script>
 </head>
-
 <body>
-  <p>Redirecting to your server...</p>
+  <p>Redirecting...</p>
 </body>
 </html>
