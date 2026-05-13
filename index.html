@@ -5,17 +5,14 @@
   <script>
     const base = "http://10.40.136.250:8000";
 
-    const repo = "/mroapp";
-
+    // Take full path and remove the repo part everywhere
     let path = window.location.pathname;
 
-    // Remove repo prefix
-    if (path.startsWith(repo)) {
-      path = path.slice(repo.length);
-    }
+    // Force remove ALL occurrences of /mroapp at the start
+    path = path.replace(/^\/mroapp/, "");
 
-    // Ensure path starts correctly
-    if (path === "" || path === "/") {
+    // Clean double slashes
+    if (path === "/") {
       path = "";
     }
 
