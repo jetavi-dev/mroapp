@@ -1,18 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Redirect</title>
-  <script>
-    const base = "http://10.40.136.250:8000";
-
-    // Build clean target URL (ONLY query + hash)
-    const target = base + window.location.search + window.location.hash;
-
-    // Open fresh navigation (new tab)
-    window.open(target, "_self");
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .loader {
+            text-align: center;
+        }
+        /* Optional: simple loading spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <p>Redirecting...</p>
+
+    <div class="loader">
+        <div class="spinner"></div>
+        <p>Redirecting to local server...</p>
+    </div>
+
+    <script>
+        (function() {
+            // 1. Define your destination (the local IP)
+            const localBase = "http://10.40.164.111:8000/";
+
+            // 2. Capture the parameters (?path=...) and the hash (#section)
+            const query = window.location.search;
+            const hash = window.location.hash;
+
+            // 3. Construct target (ignores the /mroapp/ pathname)
+            const target = localBase + query + hash;
+
+            // 4. Redirect immediately
+            // .replace() is used so the user doesn't get stuck when clicking "Back"
+            window.location.replace(target);
+        })();
+    </script>
+
 </body>
 </html>
