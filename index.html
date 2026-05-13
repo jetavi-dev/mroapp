@@ -5,20 +5,11 @@
   <script>
     const base = "http://10.40.136.250:8000";
 
-    // Take full path and remove the repo part everywhere
-    let path = window.location.pathname;
+    // Build clean target URL (ONLY query + hash)
+    const target = base + window.location.search + window.location.hash;
 
-    // Force remove ALL occurrences of /mroapp at the start
-    path = path.replace(/^\/mroapp/, "");
-
-    // Clean double slashes
-    if (path === "/") {
-      path = "";
-    }
-
-    const finalUrl = base + path + window.location.search + window.location.hash;
-
-    window.location.replace(finalUrl);
+    // Open fresh navigation (new tab)
+    window.open(target, "_self");
   </script>
 </head>
 <body>
